@@ -1,14 +1,13 @@
-from dataclasses import dataclass
-from datetime import datetime, timedelta
+import abc
+import enum
+import queue
+import random
 import threading
 import time
-import queue
-import enum
-from typing import Literal
-import random
 import uuid
-import abc
-
+from dataclasses import dataclass
+from datetime import datetime, timedelta
+from typing import Literal
 
 STORAGE = {
     "users": [],
@@ -88,6 +87,7 @@ class DeliveryService(abc.ABC):
 
     def _ship(self, delay: int):
         """All concrete .ship() methods should call this method."""
+
         def callback():
             blocking_process(delay)
             STORAGE["delivery"][self._order.number][1] = "finished"
@@ -171,9 +171,13 @@ def main():
             try:
                 data = order_details.split(" ")
                 order_name, delay = data[0], int(data[1])
-                scheduler.add_order((order_name, datetime.now() + timedelta(seconds=delay)))
+                scheduler.add_order(
+                    (order_name, datetime.now() + timedelta(seconds=delay))
+                )
             except (ValueError, IndexError):
-                print("Invalid input. Please enter the order details in the format: <name> <delay>")
+                print(
+                    "Invalid input. Please enter the order details in the format: <name> <delay>"
+                )
 
 
 if __name__ == "__main__":

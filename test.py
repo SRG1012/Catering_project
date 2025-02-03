@@ -1,12 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-
-STORAGE = {
-    "users": [...],
-    "dishes": [...],
-    "orders": [...]
-}
+STORAGE = {"users": [...], "dishes": [...], "orders": [...]}
 
 
 @dataclass

@@ -109,6 +109,7 @@ class Order
     total: int
     cookinf: CookingInfo | None = None
     delivery: DeliveryInfo | None = None
+
     
 
 # INVALID APPROACH
