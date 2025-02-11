@@ -1,7 +1,6 @@
 from django.db import models
 
 class User(models.Model):
-    #id: models.PrimeryKey()
     email = models.CharField(max_length=110)
     password = models.CharField(max_length=255)
     first_name = models.CharField(max_length=50)
@@ -11,13 +10,34 @@ class User(models.Model):
     
 
 
-#class Order(models.Model):
-    #user: User = models.ForeignKey(User)
+class Order(models.Model):
+    user: User = models.ForeignKey('User', on_delete=models.CASCADE)
+    eternal_order_id = models.CharField(max_length=255)
+    
 
-#class Restaurant(models.Model):
-    #name = models.CharField(...)
-    #address = models.CharField(...)
 
-#class Dish(models.Model):
-    #name: str = models.CharField(...)
-    #restaurant = models.ForeignKey(...)
+class Restaurant(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100) 
+
+class Dish(models.Model):
+    name: str = models.CharField(max_length=50)
+
+    restaurant = models.ForeignKey(
+        'Restaurant',
+        on_delete=models.CASCADE
+    )
+
+class DishOrder(models.Model):
+    quantity = models.SmallIntegerField()
+
+    order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    dish = models.ForeignKey('Dish', on_delete=models.CASCADE)
+
+class DeliveryOrder(models.Model):
+    provider = models.CharField(max_length=100)
+    status = models.CharField(max_length=50)
+    adresses = models.TextField()
+    external_order_id = models.CharField(max_length=255)
+
+    order = models.ForeignKey('Order', on_delete=models.CASCADE)
