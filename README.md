@@ -21,3 +21,15 @@ pipenv lock
 
 # install dependencies form `Pipfile.lock` file
 pipenv sync
+
+
+
+
+# TABLES
+
+'''python
+class User:
+    id: int
+    
+
+'''
