@@ -38,7 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # custom
-    'core.apps.CoreConfig',
+    'users.apps.UsersConfig',
+    'delivery.apps.DeliveryConfig',
+    'deliveryorder.apps.DeliveryorderConfig',
+    'dishes.apps.DishesConfig',
+    'orders.apps.OrdersConfig',
+    'dishorder.apps.DishorderConfig',
+    'restaurants.apps.RestaurantConfig',
+
+
 ]
 
 MIDDLEWARE = [
