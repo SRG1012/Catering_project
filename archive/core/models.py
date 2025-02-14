@@ -9,16 +9,16 @@ class User(models.Model):
     phone = models.CharField(max_length=15)
     
 
-
-class Order(models.Model):
-    user: User = models.ForeignKey('User', on_delete=models.CASCADE)
-    eternal_order_id = models.CharField(max_length=255)
-    
-
-
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100) 
+
+
+class Order(models.Model):
+    eternal_order_id = models.CharField(max_length=255)
+    
+    user: User = models.ForeignKey('User', on_delete=models.CASCADE)
+    
 
 class Dish(models.Model):
     name: str = models.CharField(max_length=50)

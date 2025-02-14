@@ -1,0 +1,36 @@
+[
+    {
+      "model": "food.restaurant",
+      "pk": 1,
+      "fields": {
+        "name": "Melange",
+        "address": "69 Avenue Street"
+      }
+    },
+    {
+        "model": "food.restaurant",
+        "pk": 2,
+        "fields": {
+          "name": "Bueno",
+          "address": "96 Avenue "
+        }
+      },
+    {
+      "model": "food.dish",
+      "pk": 1,
+      "fields": {
+        "name": "Salad",
+        "price": 10,
+        "restaurant": 1
+      }
+    },
+    {
+      "model": "food.dish",
+      "pk": 2,
+      "fields": {
+        "name": "Pizza",
+        "price": 25,
+        "restaurant": 2
+      }
+    }
+  ]

@@ -33,3 +33,8 @@ class User:
     
 
 '''
+
+
+
+# JSON
+python manage.py loaddata food/fixtures/test_data.json

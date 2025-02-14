@@ -38,13 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # custom
-    'users.apps.UsersConfig',
     'delivery.apps.DeliveryConfig',
-    'deliveryorder.apps.DeliveryorderConfig',
-    'dishes.apps.DishesConfig',
-    'orders.apps.OrdersConfig',
-    'dishorder.apps.DishorderConfig',
-    'restaurants.apps.RestaurantConfig',
+    'food.apps.FoodConfig',
+ 
 
 
 ]
