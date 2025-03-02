@@ -1,5 +1,6 @@
-venv/
+.idea/
 .vscode/
-.sqlite3/
 __pycache__/
-.core/
+.DS_Store/
+venv
+.sqlite3

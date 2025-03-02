@@ -31,6 +31,7 @@ pipenv sync
 class User:
     id: int
     
+    
 
 '''
 

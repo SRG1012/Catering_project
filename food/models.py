@@ -34,8 +34,8 @@ class DishesOrder(models.Model):
 
     class Meta:
         db_table = "dishes_orders"
-        verbose_name_plural = "dishes orders"
-
+        verbose_name_plural = "dishes_orders"
+ 
     external_order_id = models.CharField(max_length=255)
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
 
