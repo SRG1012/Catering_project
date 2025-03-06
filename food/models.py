@@ -8,6 +8,7 @@ class Restaurant(models.Model):
 
     name = models.CharField(max_length=100, blank=False)
     address = models.CharField(max_length=100, blank=True)
+    dishes = models.ManyToManyField("Dish", related_name="restaurants",blank=True)
 
     def __str__(self) -> str:
         return f"[{self.pk}] {self.name}"
@@ -18,7 +19,7 @@ class Dish(models.Model):
         db_table = "dishes"
         verbose_name_plural = "dishes"
 
-    name = models.CharField(max_length=50, null=True)
+    name = models.CharField(max_length=50, null=True, blank = True)
     price = models.IntegerField()
     restaurant = models.ForeignKey("Restaurant", on_delete=models.CASCADE)
 
