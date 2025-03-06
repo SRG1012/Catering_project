@@ -1,9 +1,8 @@
 from django.core.handlers.wsgi import WSGIRequest 
 from django.template.response import TemplateResponse
-from django import forms
+from .forms import UploadDishesForm
 
-class UploadDishesForm(forms.Form):
-    csv_file = forms.FileField()
+
 
 def import_dishes(request: WSGIRequest, **kwargs):
     if request.method == "GET":

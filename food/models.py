@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Restaurant(models.Model):
@@ -25,7 +26,7 @@ class Dish(models.Model):
         return f"{self.name} {self.price}  ({self.restaurant})"
 
 
-class DishesOrder(models.Model):
+class Order(models.Model):
     """the instance of that class defines the order of dishes from
     external restaurant that is available in the system.
 
@@ -33,14 +34,15 @@ class DishesOrder(models.Model):
     """
 
     class Meta:
-        db_table = "dishes_orders"
-        verbose_name_plural = "dishes_orders"
- 
-    external_order_id = models.CharField(max_length=255)
-    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+        db_table = "orders"
+
+    status = models.CharField(max_length=30)
+    provider = models.CharField(max_length=20, null=True, blank=True)
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return f"{self.pk} {self.external_order_id}"
+        return f"{self.pk} {self.status} for {self.user.email}"
 
 
 class DishOrderItem(models.Model):
@@ -53,18 +55,10 @@ class DishOrderItem(models.Model):
 
     quantity = models.SmallIntegerField()
 
-    order = models.ForeignKey("DishesOrder", on_delete=models.CASCADE)
     dish = models.ForeignKey("Dish", on_delete=models.CASCADE)
+    order = models.ForeignKey("Order", on_delete=models.CASCADE)
+    
 
-    def __str__(self) -> str:
-        return f"[{self.order.pk}] {self.dish.name}: {self.quantity}"
-    class Meta:
-        db_table = 'dish_order_items'
-
-    quantity = models.SmallIntegerField()
-
-    order = models.ForeignKey('DishesOrder', on_delete=models.CASCADE)
-    dish = models.ForeignKey('Dish', on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"[{self.order.pk}] {self.dish.name}: {self.quantity}"
