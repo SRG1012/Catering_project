@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e61a071e0de1efe0fe96def6a9393d266bf4eb7298b080ef4cfb65fcfebdafd3"
+            "sha256": "2d915ab72a4ffd25be9a50202fc2c2d8b9db127035ccb565ec38d07a101d9073"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -134,6 +134,15 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.9.0"
         },
+        "redis": {
+            "hashes": [
+                "sha256:16f2e22dff21d5125e8481515e386711a34cbec50f0e44413dd7d9c060a54e0f",
+                "sha256:ee7e1056b9aea0f04c6c2ed59452947f34c4940ee025f5dd83e6a6418b6989e4"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==5.2.1"
+        },
         "sqlparse": {
             "hashes": [
                 "sha256:09f67787f56a0b16ecdbde1bfc7f5d9c3371ca683cfeaa8e6ff60b4807ec9272",
@@ -144,11 +153,11 @@
         },
         "tzdata": {
             "hashes": [
-                "sha256:24894909e88cdb28bd1636c6887801df64cb485bd593f2fd83ef29075a81d694",
-                "sha256:7e127113816800496f027041c570f50bcd464a020098a3b6b199517772303639"
+                "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8",
+                "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9"
             ],
             "markers": "python_version >= '2'",
-            "version": "==2025.1"
+            "version": "==2025.2"
         }
     },
     "develop": {
@@ -229,11 +238,11 @@
         },
         "ipython": {
             "hashes": [
-                "sha256:377ea91c8226b48dc9021ac9846a64761abc7ddf74c5efe38e6eb06f6e052f3a",
-                "sha256:3e878273824b52e0a2280ed84f8193aba8c4ba9a6f45a438348a3d5ef1a34bd0"
+                "sha256:143ef3ea6fb1e1bffb4c74b114051de653ffb7737a3f7ab1670e657ca6ae8c44",
+                "sha256:ec7b479e3e5656bf4f58c652c120494df1820f4f28f522fb7ca09e213c2aab52"
             ],
             "markers": "python_version >= '3.11'",
-            "version": "==9.0.1"
+            "version": "==9.0.2"
         },
         "ipython-pygments-lexers": {
             "hashes": [
@@ -331,11 +340,11 @@
         },
         "tzdata": {
             "hashes": [
-                "sha256:24894909e88cdb28bd1636c6887801df64cb485bd593f2fd83ef29075a81d694",
-                "sha256:7e127113816800496f027041c570f50bcd464a020098a3b6b199517772303639"
+                "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8",
+                "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9"
             ],
             "markers": "python_version >= '2'",
-            "version": "==2025.1"
+            "version": "==2025.2"
         },
         "wcwidth": {
             "hashes": [

@@ -4,10 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 psycopg2-binary = "~=2.9.10"
+django = "*"
+redis = "~=5.2.1"
 
 [dev-packages]
 django-stubs = "~=5.1"

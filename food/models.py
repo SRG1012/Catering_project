@@ -8,7 +8,6 @@ class Restaurant(models.Model):
 
     name = models.CharField(max_length=100, blank=False)
     address = models.CharField(max_length=100, blank=True)
-    dishes = models.ManyToManyField("Dish", related_name="restaurants",blank=True)
 
     def __str__(self) -> str:
         return f"[{self.pk}] {self.name}"
@@ -19,7 +18,7 @@ class Dish(models.Model):
         db_table = "dishes"
         verbose_name_plural = "dishes"
 
-    name = models.CharField(max_length=50, null=True, blank = True)
+    name = models.CharField(max_length=50, null=True)
     price = models.IntegerField()
     restaurant = models.ForeignKey("Restaurant", on_delete=models.CASCADE)
 
@@ -39,12 +38,14 @@ class Order(models.Model):
 
     status = models.CharField(max_length=30)
     provider = models.CharField(max_length=20, null=True, blank=True)
-
+    eta = models.DateField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"{self.pk} {self.status} for {self.user.email}"
 
+    def __repr__(self) -> str:
+        return super().__str__()
 
 class DishOrderItem(models.Model):
     """the instance of that class defines a DISH item that is related
@@ -57,7 +58,7 @@ class DishOrderItem(models.Model):
     quantity = models.SmallIntegerField()
 
     dish = models.ForeignKey("Dish", on_delete=models.CASCADE)
-    order = models.ForeignKey("Order", on_delete=models.CASCADE)
+    order = models.ForeignKey("Order", on_delete=models.CASCADE, related_name="items")
     
 
 

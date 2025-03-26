@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-20p-ak!)=*h39&x+$@m2hdvd1t6y41za%m0ex@!3kh4*bgj#m(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'delivery.apps.DeliveryConfig',
     'food.apps.FoodConfig',
     'users.apps.UsersConfig',
+    'shared',
+    'orders',
  
 ]
 
@@ -97,11 +99,14 @@ DATABASES = {
         "NAME": "catering",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "database",
+        "HOST": "localhost",
         "PORT": "5432",
         "ATOMIC_REQUESTS": True,
     }
 }
+
+# Cache
+CACHE_CONNECTION_STRING = "redis://localhost:6379/0" 
 
 
 
@@ -172,7 +177,7 @@ AUTH_USER_MODEL = "users.User"
 
 # MAILING SECTION
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "mailing"
+EMAIL_HOST = "localhost"
 EMAIL_PORT = 1025
 EMAIL_HOST_USER = "mailpit"  # change to real data
 EMAIL_HOST_PASSWORD = "mailpit"  # change to real data

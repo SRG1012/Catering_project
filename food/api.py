@@ -36,8 +36,9 @@ class FoodAPIViewSet(viewsets.GenericViewSet):
         order = Order.objects.create(
             status=OrderStatus.NOT_STARTED,
             user=request.user,
+            eta=serializer.validated_data["eta"],
         )
-        print(f"New order created: {order.pk}")
+        print(f"New order created: {order.pk}.\nETA: {order.eta}")
 
         # 4. Получаем список блюд
         try:
@@ -54,7 +55,13 @@ class FoodAPIViewSet(viewsets.GenericViewSet):
             )
             print(f"New order position: {instance.pk}")
 
-        return Response({"message": "Order created successfully"}, status=status.HTTP_201_CREATED)
+        return Response(data={
+            "id": order.pk,
+            "status": order.status,
+            "eta": order.eta,
+            "total": 9999,
+            }, 
+            status=status.HTTP_201_CREATED)
 
     #  HTTP GET /food/restaurants
     @action(methods=["get"], detail=False)

@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         db_table = "users"
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.first_name and self.last_name:
             return f"{self.first_name} {self.last_name}"
         
@@ -55,7 +55,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     role = models.CharField(
         max_length=10,
-        choices=Role.choices(), default=Role.CLIENT,
+        choices=Role.choices(), 
+        default=Role.CLIENT,
     ) 
     
 

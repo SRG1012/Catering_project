@@ -10,6 +10,7 @@ class OrderStatus(StrEnum):
     DRIVER_WAITING = auto()
     DELIVERED = auto()
     NOT_DELIVERED = auto()
+    CENCELLED = auto()
 
 
     @classmethod

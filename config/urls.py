@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView
+
 from users.api import router as users_router
 from food.api import router as food_router
 
