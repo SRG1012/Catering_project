@@ -181,3 +181,10 @@ EMAIL_HOST = "localhost"
 EMAIL_PORT = 1025
 EMAIL_HOST_USER = "mailpit"  # change to real data
 EMAIL_HOST_PASSWORD = "mailpit"  # change to real data
+
+
+# CELERY SECTION
+CELERY_BROKER_URL = "redis://localhost:6380/0"
+CELERY_ACCEPT_CONTENT = ["pickle", "application/json", "application/x-python-serialize"]
+CELERY_TASK_SERIALIZER = 'pickle'
+CELERY_EVENT_SERIALIZER = "pickle"

@@ -9,10 +9,12 @@ djangorestframework-simplejwt = "*"
 psycopg2-binary = "~=2.9.10"
 django = "*"
 redis = "~=5.2.1"
+celery = { version = "==5.4.0", extras = ["redis"]}
 
 [dev-packages]
 django-stubs = "~=5.1"
 ipdb = "*"
+celery-types = "*"
 
 [requires]
 python_version = "3.12"

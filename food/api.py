@@ -38,6 +38,7 @@ class FoodAPIViewSet(viewsets.GenericViewSet):
             user=request.user,
             eta=serializer.validated_data["eta"],
         )
+        
         print(f"New order created: {order.pk}.\nETA: {order.eta}")
 
         # 4. Получаем список блюд

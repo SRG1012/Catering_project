@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+
 from users.service import Activator
 
 from .serializers import (
@@ -13,10 +14,10 @@ from .serializers import (
 )
 
 
-# PoC
+#PoC
 # @celery_app.task
 # def background_task(n: int):
-#     print(f"Running in the background, {n=}")
+#     print(f"runing in the background, {n=}")
 #     return n
 
 
