@@ -64,3 +64,5 @@ class DishOrderItem(models.Model):
 
     def __str__(self) -> str:
         return f"[{self.order.pk}] {self.dish.name}: {self.quantity}"
+    
+

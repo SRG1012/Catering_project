@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'food.apps.FoodConfig',
     'users.apps.UsersConfig',
     'shared',
-    'orders',
  
 ]
 

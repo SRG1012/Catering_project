@@ -1,7 +1,10 @@
+from celery.result import AsyncResult
 from django.core.handlers.wsgi import WSGIRequest
 from rest_framework import status, viewsets, routers
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+from .services import schedule_order
 
 from .models import Dish, DishOrderItem, Order, Restaurant
 from .serializers import DishSerializer, OrderCreateSerializer, RestaurantSerializer
@@ -20,7 +23,7 @@ class FoodAPIViewSet(viewsets.GenericViewSet):
         return Response(serializer.data)
 
     #  HTTP POST /food/orders
-    @action(methods=["post"], detail=False)
+    @action(methods=["post", "get"], detail=False)
     def orders(self, request: WSGIRequest):
         """ Создать новый заказ """
 
@@ -38,8 +41,7 @@ class FoodAPIViewSet(viewsets.GenericViewSet):
             user=request.user,
             eta=serializer.validated_data["eta"],
         )
-        
-        print(f"New order created: {order.pk}.\nETA: {order.eta}")
+
 
         # 4. Получаем список блюд
         try:
@@ -54,7 +56,10 @@ class FoodAPIViewSet(viewsets.GenericViewSet):
                 quantity=dish_order["quantity"], 
                 order=order
             )
-            print(f"New order position: {instance.pk}")
+
+        schedule_order(order=order)
+        print(f"New order created: {order.pk}.\nETA: {order.eta}")
+        print(f"New order position: {instance.pk}")
 
         return Response(data={
             "id": order.pk,
