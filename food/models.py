@@ -27,25 +27,31 @@ class Dish(models.Model):
 
 
 class Order(models.Model):
-    """the instance of that class defines the order of dishes from
-    external restaurant that is available in the system.
-
-    dishes in plural.
+    """
+    The instance of that class defines the order of dishes from
+    external restaurants that are available in the system.
     """
 
     class Meta:
         db_table = "orders"
 
-    status = models.CharField(max_length=30)
-    provider = models.CharField(max_length=20, null=True, blank=True)
+
+    melange_external_id = models.CharField(max_length=255, null=True, blank=True)
+    melange_status = models.CharField(max_length=30, default="not_started")
+
+    bueno_external_id = models.CharField(max_length=255, null=True, blank=True)
+    bueno_status = models.CharField(max_length=30, default="not_started")
+
     eta = models.DateField()
+    provider = models.CharField(max_length=20, null=True, blank=True)  # still usable for quick filtering
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return f"{self.pk} {self.status} for {self.user.email}"
+        return f"Order #{self.pk} for {self.user.email}"
 
     def __repr__(self) -> str:
-        return super().__str__()
+        return f"<Order #{self.pk} for {self.user.email}>"
+
 
 class DishOrderItem(models.Model):
     """the instance of that class defines a DISH item that is related

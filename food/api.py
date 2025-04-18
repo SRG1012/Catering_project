@@ -35,22 +35,28 @@ class FoodAPIViewSet(viewsets.GenericViewSet):
         if not isinstance(serializer.validated_data, dict):
             raise ValueError("Invalid order format")
 
-        # 3. Создаём новый заказ
-        order = Order.objects.create(
-            status=OrderStatus.NOT_STARTED,
-            user=request.user,
-            eta=serializer.validated_data["eta"],
-        )
+        # 3. Опрацювати список страв і визначити ресторани
+        restaurant_names = set()
+        for dish_order in serializer.validated_data["food"]:
+            restaurant_names.add(dish_order["dish"].restaurant.name.lower())
 
+        # 4. Створюємо замовлення з відповідними статусами
+        order_kwargs = {
+        "user": request.user,
+        "eta": serializer.validated_data["eta"],
+        }
 
-        # 4. Получаем список блюд
-        try:
-            dishes_order = serializer.validated_data["food"]
-        except KeyError:
-            raise ValueError("Error: The order is incorrectly composed")
+        if "melange" in restaurant_names:
+            order_kwargs["melange_status"] = "not_started"
+
+        if "bueno" in restaurant_names:
+            order_kwargs["bueno_status"] = "not_started"
+
+        order = Order.objects.create(**order_kwargs)
+
 
         # 5. Создаём позиции заказа
-        for dish_order in dishes_order:
+        for dish_order in serializer.validated_data["food"]:
             instance = DishOrderItem.objects.create(
                 dish=dish_order["dish"], 
                 quantity=dish_order["quantity"], 
@@ -62,12 +68,13 @@ class FoodAPIViewSet(viewsets.GenericViewSet):
         print(f"New order position: {instance.pk}")
 
         return Response(data={
-            "id": order.pk,
-            "status": order.status,
-            "eta": order.eta,
-            "total": 9999,
-            }, 
-            status=status.HTTP_201_CREATED)
+        "id": order.pk,
+        "melange_status": order.melange_status,
+        "bueno_status": order.bueno_status,
+        "eta": order.eta,
+        "total": 9999,
+        }, status=status.HTTP_201_CREATED)
+
 
     #  HTTP GET /food/restaurants
     @action(methods=["get"], detail=False)
